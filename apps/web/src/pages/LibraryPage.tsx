@@ -1,16 +1,30 @@
-
-
-
+import Hero from "../components/library/Hero";
+import LibraryFilters from "../components/library/LibraryFilters";
+import LibraryGrid from "../components/library/LibraryGrid";
+import LibraryPreviewDrawer from "../components/library/LibraryPreviewDrawer";
+import LibraryToolbar from "../components/library/LibraryToolbar";
 
 export default function LibraryPage() {
-  return (
-    <>
-      <div>
-        <h1>Library</h1>
-        <p>Manage your application library here.</p>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="space-y-10">
+
+                {/* Hero */}
+                <Hero />
+
+                {/* Command Center */}
+                <LibraryToolbar />
+
+                {/* Collections */}
+                <LibraryFilters />
+
+                {/* Archive */}
+                <LibraryGrid />
+
+                {/* Preview */}
+                <LibraryPreviewDrawer />
+
+            </div>
+        </>
+    );
 }
-
-
