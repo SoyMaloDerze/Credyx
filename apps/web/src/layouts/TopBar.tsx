@@ -6,7 +6,8 @@ import {
     RiWallet3Line,
 } from "react-icons/ri";
 
-import Logo from "./Logo";
+
+import Logo from "../components/branding/Logo";
 
 import { navigation } from "../constants/navigation";
 import { MOTION, fade } from "../constants/motion";
@@ -33,7 +34,7 @@ export default function TopBar({
                 className="sticky top-0 z-50 border-b border-white/5 bg-[#09090B]/90 backdrop-blur-2xl"
             >
                 <div className="mx-auto flex h-18 w-full max-w-360 items-center justify-between px-6 lg:px-10">
-                    <Logo />
+                    <Logo className="h-16 w-auto" />
 
                     {/* Desktop navigation */}
                     <nav className="hidden items-center gap-2 lg:flex">

@@ -6,7 +6,7 @@ export default function Logo() {
     return (
         <>
             <Link
-                to={ROUTES.HOME}
+                to={ROUTES.APP}
                 className="group flex items-center gap-3 select-none"
             >
                 {/* Brand Mark */}

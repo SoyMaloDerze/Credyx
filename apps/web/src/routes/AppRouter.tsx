@@ -1,12 +1,20 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+    BrowserRouter,
+    Route,
+    Routes,
+    useLocation,
+} from "react-router-dom";
 
-import { page } from "../constants/motion";
-import { MOTION } from "../constants/motion";
+import {
+    page,
+    MOTION,
+} from "../constants/motion";
 import { EASING } from "../constants/easing";
 
 import AppLayout from "../layouts/AppLayout";
 
+import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
 import VaultPage from "../pages/VaultPage";
 import ProfilePage from "../pages/ProfilePage";
@@ -15,84 +23,93 @@ import SettingsPage from "../pages/SettingsPage";
 
 import { ROUTES } from "./routes";
 
+function AnimatedPage({
+    children,
+}: React.PropsWithChildren) {
+    return (
+        <motion.main
+            variants={page}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            transition={{
+                duration: MOTION.duration,
+                ease: EASING.standard,
+            }}
+        >
+            {children}
+        </motion.main>
+    );
+}
+
 function AnimatedRoutes() {
     const location = useLocation();
 
     return (
-        <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-                <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+        <AnimatePresence
+            mode="wait"
+            initial={false}
+        >
+            <Routes
+                location={location}
+                key={location.pathname}
+            >
+                {/* Public */}
+
+                <Route
+                    path={ROUTES.LANDING}
+                    element={
+                        <AnimatedPage>
+                            <LandingPage />
+                        </AnimatedPage>
+                    }
+                />
+
+                <Route
+                    path={ROUTES.LOGIN}
+                    element={
+                        <AnimatedPage>
+                            <LoginPage />
+                        </AnimatedPage>
+                    }
+                />
+
+                {/* Application */}
 
                 <Route element={<AppLayout />}>
                     <Route
-                        path={ROUTES.HOME}
+                        path={ROUTES.APP}
                         element={
-                            <motion.main
-                                variants={page}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                transition={{
-                                    duration: MOTION.duration,
-                                    ease: EASING.standard,
-                                }}
-                            >
+                            <AnimatedPage>
                                 <VaultPage />
-                            </motion.main>
+                            </AnimatedPage>
                         }
                     />
 
                     <Route
                         path={ROUTES.PROFILE}
                         element={
-                            <motion.main
-                                variants={page}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                transition={{
-                                    duration: MOTION.duration,
-                                    ease: EASING.standard,
-                                }}
-                            >
+                            <AnimatedPage>
                                 <ProfilePage />
-                            </motion.main>
+                            </AnimatedPage>
                         }
                     />
 
                     <Route
                         path={ROUTES.LIBRARY}
                         element={
-                            <motion.main
-                                variants={page}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                transition={{
-                                    duration: MOTION.duration,
-                                    ease: EASING.standard,
-                                }}
-                            >
+                            <AnimatedPage>
                                 <LibraryPage />
-                            </motion.main>
+                            </AnimatedPage>
                         }
                     />
 
                     <Route
                         path={ROUTES.SETTINGS}
                         element={
-                            <motion.main
-                                variants={page}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                transition={{
-                                    duration: MOTION.duration,
-                                    ease: EASING.standard,
-                                }}
-                            >
+                            <AnimatedPage>
                                 <SettingsPage />
-                            </motion.main>
+                            </AnimatedPage>
                         }
                     />
                 </Route>

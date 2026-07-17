@@ -6,11 +6,11 @@ import {
     RiWallet3Line,
 } from "react-icons/ri";
 
-import Logo from "./Logo";
 
 import { navigation } from "../constants/navigation";
 import { MOTION } from "../constants/motion";
 import { EASING } from "../constants/easing";
+import Logo from "../components/branding/Logo";
 
 interface MobileSidebarProps {
     isOpen: boolean;
@@ -46,7 +46,7 @@ export default function MobileSidebar({
                         >
                             {/* Sidebar header */}
                             <div className="mb-10 flex items-center justify-between">
-                                <Logo />
+                                <Logo className="h-16 w-auto" />
 
                                 <motion.button
                                     onClick={onClose}
