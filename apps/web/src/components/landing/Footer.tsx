@@ -72,7 +72,7 @@ export default function Footer() {
                             <div className="mt-5 flex flex-col gap-4">
 
                                 <Link
-                                    to={ROUTES.LOGIN}
+                                    to={ROUTES.APP}
                                     className="text-zinc-400 transition-colors duration-300 hover:text-white"
                                 >
                                     Launch Vault

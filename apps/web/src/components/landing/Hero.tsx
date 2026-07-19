@@ -97,7 +97,7 @@ export default function Hero() {
                         className="mt-12 flex flex-wrap gap-5"
                     >
                         <Link
-                            to={ROUTES.LOGIN}
+                            to={ROUTES.APP}
                             className="inline-flex items-center gap-3 rounded-full bg-violet-600 px-7 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-violet-500"
                         >
                             Launch Vault
