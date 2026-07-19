@@ -1,79 +1,114 @@
 # 🛡️ Credyx
 
-> **Own your credentials. Verify your identity. Share with confidence.**
+## Build once. Verify everywhere.
 
-Credyx is a decentralized **Professional Identity Vault** that enables individuals and organizations to securely issue, store, verify, and manage digital credentials on-chain.
+### The Google Password Manager for professional identity.
 
-Built for the **Monad Hackathon**, Credyx reimagines how professional identities are created and trusted by combining modern web technologies with blockchain-powered credential verification.
+Credyx is a decentralized professional identity platform that eliminates the repetitive process of rebuilding your profile every time you apply for an opportunity.
 
----
+Whether you're applying for a job, internship, scholarship, master's program, accelerator, or freelance platform, Credyx lets you build your professional identity once, securely organize your credentials, and reuse them whenever you need them.
 
-## ✨ The Problem
+Instead of repeatedly uploading the same resume, entering the same education history, or attaching the same certificates across different websites, users maintain a single professional identity that belongs to them.
 
-Professional credentials are fragmented, difficult to verify, and easy to forge.
+To make that identity trustworthy, Credyx anchors cryptographic fingerprints of credentials on the Monad blockchain, allowing anyone to verify authenticity instantly without exposing the original documents.
 
-Recruiters, institutions, and organizations spend significant time verifying certificates, while professionals repeatedly upload the same documents across different platforms.
+## 👩 Meet Angela
 
-Traditional systems rely on centralized databases that can become unavailable, manipulated, or disconnected across institutions.
+Angela is a software engineer looking for her next opportunity.
 
----
+On Monday, she applies for a frontend role.
 
-## 💡 Our Solution
+She uploads her resume.
 
-Credyx provides a secure digital identity vault where credentials become verifiable blockchain-backed assets.
+She enters her education.
 
-Instead of asking:
+She lists her work experience.
 
-> "Can you send me your certificate?"
+She attaches her certificates.
 
-Organizations can simply verify a credential's authenticity through its immutable on-chain record.
+She fills in her skills.
 
-Professionals remain in control of their own identity while institutions retain trust in what they issue.
+On Tuesday, she applies for a scholarship.
 
----
+She does it all again.
 
-# 🚀 Core Features
+On Wednesday, she applies for a master's program.
 
-### 🔐 Professional Identity Vault
+Again.
 
-Store digital credentials in a secure personal vault with an intuitive interface.
+Thursday? Another internship.
 
-### ⛓️ Blockchain Credential Issuance
+Friday? A freelance platform.
 
-Issue credentials whose authenticity can be verified on-chain.
+Nothing changes except the website.
 
-### ✅ Credential Verification
+Angela isn't rebuilding her career.
 
-Instantly verify whether a credential is genuine without contacting the issuing organization.
+She's rebuilding the same application.
 
-### 👛 Wallet Integration
+Over and over again.
 
-Every user has an associated blockchain wallet capable of interacting with issued credentials.
+There had to be a better way.
 
-### 🪪 Credential Collections
-
-Organize credentials into categories for easier management.
+That's why we built **Credyx**.
 
 
+## ❌ The Problem
 
+Every application starts from zero.
 
----
+Professionals repeatedly upload the same resume, enter the same personal information, attach the same certificates and rebuild the same professional profile across different platforms.
 
-# 🧱 Architecture
+Jobs.
 
-```
-                React + TypeScript
-                       │
-                 REST API (Express)
-                       │
-                  PostgreSQL Database
-                       │
-                Smart Contract Layer
-                       │
-                   Monad Testnet
-```
+Scholarships.
 
----
+Internships.
+
+Master's applications.
+
+Accelerators.
+
+Freelance marketplaces.
+
+The process is repetitive, time-consuming and frustrating.
+
+At the same time, employers and institutions still struggle to verify whether submitted credentials are genuine, relying on slow manual verification processes.
+
+Professional identity shouldn't have to be recreated every time opportunity knocks.
+
+## 💡 The Solution
+
+Credyx is the professional identity vault that lets users build their identity once and reuse it everywhere.
+
+Think of Google Password Manager.
+
+You save your password once, and it follows you across the web.
+
+Credyx brings that same experience to professional identity.
+
+Users securely organize resumes, education, work experience, certifications, portfolios and projects inside a reusable vault.
+
+Instead of rebuilding applications from scratch, they simply reuse their verified professional identity.
+
+To make that identity trustworthy, Credyx anchors cryptographic hashes of credentials on Monad while keeping sensitive documents private and off-chain.
+
+The result is a professional identity that is portable, reusable and instantly verifiable.
+
+## ⚡ Why Monad?
+
+Blockchain isn't the product.
+
+Trust is.
+
+Credyx uses Monad as its trust layer.
+
+Instead of storing sensitive files on-chain, Credyx stores only cryptographic hashes of credentials.
+
+This allows employers, universities and organizations to instantly verify authenticity while users remain in complete control of their original documents.
+
+Monad's speed, low transaction costs and EVM compatibility make it the ideal foundation for scalable credential verification.
+
 
 # 🛠 Tech Stack
 
@@ -133,7 +168,7 @@ Credyx
 ## Clone
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Credyx.git
+git clone https://github.com/SoyMaloDerze/Credyx.git
 cd Credyx
 ```
 
@@ -179,41 +214,67 @@ https://credyx-api.onrender.com
 
 ---
 
-# 🎯 Hackathon Vision
+## 🚀 Vision
 
-Credyx is designed to become the trust layer for professional identity.
+We believe professional identity should be portable.
 
-Potential applications include:
+Just as password managers eliminated the need to remember passwords, Credyx eliminates the need to repeatedly rebuild professional identity.
 
-- Universities issuing tamper-proof certificates
-- Professional licensing bodies
-- Healthcare certifications
-- Government-issued credentials
-- Corporate training certificates
-- Recruitment verification
-- Digital resumes
-- Cross-border identity verification
+Build your profile once.
+
+Own your credentials.
+
+Verify instantly.
+
+Apply anywhere.
+
+We're building the trust layer for the next generation of professional identity.
 
 ---
 
-# 🛣 Roadmap
+# 🗺️ Roadmap
 
-- Full authentication flow
-- Multi-issuer support
+Credyx is just getting started. Our vision is to become the universal professional identity layer that follows users across the internet.
+
+### 🚧 Phase 1 — Professional Identity
+- Complete profile creation and editing
+- Secure credential vault
+- Professional asset library
+- Resume and portfolio management
+- Wallet authentication
+
+### ⚡ Phase 2 — Intelligent Applications
+- Credyx Browser Companion
+- One-click application autofill
+- Secure credential sharing
+- AI-assisted profile completion
+- Smart application preparation
+
+### 🔐 Phase 3 — Trust & Verification
+- Multi-issuer credential support
+- Employer verification portal
+- University and certification issuer onboarding
 - QR-based credential verification
-- WalletConnect integration
-- DID (Decentralized Identity)
-- Verifiable Credentials (W3C)
+- Credential expiration and renewal management
+
+### 🌍 Phase 4 — The Professional Identity Network
+- Integrations with ATS and recruitment platforms
+- Scholarship and university application support
+- Cross-platform identity synchronization
 - Mobile application
-- Credential sharing via secure links
+- Public verification API for third-party platforms
 
 ---
 
-# 🏆 Why Credyx?
+### ✨ Why Credyx?
 
-Traditional verification systems are slow, fragmented, and vulnerable to fraud.
+Think of Google Password Manager.
 
-Credyx replaces manual trust with cryptographic proof, allowing credentials to be issued once, owned by users, and verified instantly from anywhere.
+You save your password once and it follows you everywhere.
+
+Credyx applies the same idea to your professional identity.
+
+Instead of repeatedly uploading resumes, certificates, education records and work experience across dozens of applications, users create a trusted professional identity once and securely reuse it whenever opportunities arise.
 
 ---
 
@@ -223,7 +284,19 @@ Credyx replaces manual trust with cryptographic proof, allowing credentials to b
 
 Computer Engineer • Full Stack Developer 
 
-Built with ❤️ for the Monad Hackathon.
+## 💜 Our Vision
+
+We believe professional identity should be portable.
+
+Just as password managers eliminated the need to remember passwords, Credyx eliminates the need to repeatedly rebuild professional identity.
+
+Your achievements belong to you.
+
+Not every website you sign up for.
+
+**Build once.**
+
+**Verify everywhere.**.
 
 ---
 
