@@ -1,4 +1,4 @@
-import AddVaultAssetModal from "../components/vault/AddVaultAssetModal";
+// import AddVaultAssetModal from "../components/vault/AddVaultAssetModal";
 import CredentialCard from "../components/vault/CredentialCard";
 import EmptyState from "../components/vault/EmptyState";
 import FloatingButton from "../components/vault/FloatingButton";
@@ -8,7 +8,7 @@ import VaultAssetDrawer from "../components/vault/VaultAssetDrawer";
 import VaultSearch from "../components/vault/VaultSearch";
 import SearchEmptyState from "../components/vault/SearchEmptyState";
 import { AnimatePresence, motion } from "framer-motion";
-
+import { useEffect } from "react";
 
 
 import { useVaultStore } from "../store/useVaultStore";
@@ -16,17 +16,24 @@ import { useVaultStore } from "../store/useVaultStore";
 export default function VaultPage() {
     const {
         assets,
+        loading,
+        error,
+        loadAssets,
         searchQuery,
         setSearchQuery,
-        isModalOpen,
+        // isModalOpen,
         isDrawerOpen,
         selectedAsset,
         openModal,
-        closeModal,
+        // closeModal,
         openDrawer,
         closeDrawer,
-        editingAsset,
+        // editingAsset,
     } = useVaultStore();
+
+    useEffect(() => {
+        void loadAssets();
+    }, [loadAssets]);
 
     const filteredAssets = assets.filter((asset) => {
         const query = searchQuery.trim().toLowerCase();
@@ -36,9 +43,21 @@ export default function VaultPage() {
         }
 
         return (
-            asset.title.toLowerCase().includes(query) ||
-            asset.description.toLowerCase().includes(query) ||
-            asset.type.toLowerCase().includes(query)
+            asset.credentialTitle
+                .toLowerCase()
+                .includes(query) ||
+            (asset.description ?? "")
+                .toLowerCase()
+                .includes(query) ||
+            asset.credentialType
+                .toLowerCase()
+                .includes(query) ||
+            asset.recipientName
+                .toLowerCase()
+                .includes(query) ||
+            asset.issuingOrganization
+                .toLowerCase()
+                .includes(query)
         );
     });
 
@@ -46,13 +65,31 @@ export default function VaultPage() {
     const hasVaultAssets = assets.length > 0;
     const hasSearchResults = filteredAssets.length > 0;
 
+    if (loading) {
+        return (
+            <div className="flex min-h-[50vh] items-center justify-center text-zinc-400">
+                Loading credentials...
+            </div>
+        );
+    }
+
+
+    if (error) {
+        return (
+            <div className="flex min-h-[50vh] items-center justify-center text-red-400">
+                {error}
+            </div>
+        );
+    }
+
+
     return (
         <>
             <div className="space-y-8">
 
                 {/* Hero */}
                 <Hero
-                    onCreateAsset={openModal}
+                    onIssueCredential={openModal}
                 />
 
                 {/* Vault Search */}
@@ -98,12 +135,7 @@ export default function VaultPage() {
                                 {filteredAssets.map((credential) => (
                                     <CredentialCard
                                         key={credential.id}
-                                        title={credential.title}
-                                        description={credential.description}
-                                        type={credential.type}
-                                        lastSynced={credential.lastSynced}
-                                        icon={credential.icon}
-                                        isPrimary={credential.isPrimary}
+                                        credential={credential}
                                         onClick={() => openDrawer(credential)}
                                     />
                                 ))}
@@ -123,11 +155,11 @@ export default function VaultPage() {
                 />
 
                 {/* Create asset modal */}
-                <AddVaultAssetModal
+                {/* <AddVaultAssetModal
                     key={editingAsset?.id ?? "create"}
                     isOpen={isModalOpen}
                     onClose={closeModal}
-                />
+                /> */}
 
                 {/* Vault Assets */}
                 <VaultAssetDrawer

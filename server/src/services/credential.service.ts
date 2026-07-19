@@ -19,6 +19,8 @@ export async function verifyCredential(hash: string): Promise<boolean> {
     return await registry.verifyCredential(hash);
 }
 
+
+
 export async function getCredential(hash: string) {
     const credential = await registry.getCredential(hash);
 

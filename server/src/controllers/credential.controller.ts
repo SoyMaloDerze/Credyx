@@ -6,7 +6,7 @@ import {
     revokeCredential,
     verifyCredential,
 } from "../services/credential.service";
-import { createCredential } from "../repositories/credential.repository";
+import { createCredential, getCredentials, } from "../repositories/credential.repository";
 import { CredentialType } from "@prisma/client";
 import { env } from "../config/env";
 
@@ -163,6 +163,32 @@ export async function getCredentialController(
             error instanceof Error
                 ? error.message
                 : "Unknown error";
+        return res.status(500).json({
+            success: false,
+            message,
+        });
+    }
+}
+
+
+export async function getCredentialsController(
+    req: Request,
+    res: Response
+) {
+    try {
+        const credentials =
+            await getCredentials();
+
+        return res.json({
+            success: true,
+            credentials,
+        });
+    } catch (error) {
+        const message =
+            error instanceof Error
+                ? error.message
+                : "Unknown error";
+
         return res.status(500).json({
             success: false,
             message,

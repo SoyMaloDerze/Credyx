@@ -1,16 +1,29 @@
 import { create } from "zustand";
 
-import { mockCredentials } from "../mock/credentials";
 import type { Credential } from "../types/credential";
+
+import { getCredentials } from "../services/credential.service";
 
 interface VaultStore {
     assets: Credential[];
 
+    loading: boolean;
+
+    error: string | null;
+
     selectedAsset: Credential | null;
+
+    editingAsset: Credential | null;
 
     isModalOpen: boolean;
 
     isDrawerOpen: boolean;
+
+    searchQuery: string;
+
+    loadAssets: () => Promise<void>;
+
+    setAssets: (assets: Credential[]) => void;
 
     openModal: (asset?: Credential) => void;
 
@@ -20,32 +33,55 @@ interface VaultStore {
 
     closeDrawer: () => void;
 
-    createAsset: (asset: Credential) => void;
-
-    updateAsset: (id: string, asset: Credential) => void;
-
-    deleteAsset: (id: string) => void;
-
-    editingAsset: Credential | null;
-
-    searchQuery: string;
-
     setSearchQuery: (query: string) => void;
-
 }
 
 export const useVaultStore = create<VaultStore>((set) => ({
-    assets: mockCredentials,
+    assets: [],
+
+    loading: false,
+
+    error: null,
 
     selectedAsset: null,
+
+    editingAsset: null,
 
     isModalOpen: false,
 
     isDrawerOpen: false,
 
-    editingAsset: null,
-
     searchQuery: "",
+
+    async loadAssets() {
+        set({
+            loading: true,
+            error: null,
+        });
+
+        try {
+            const { credentials } =
+                await getCredentials();
+
+            set({
+                assets: credentials,
+                loading: false,
+            });
+        } catch (error) {
+            set({
+                loading: false,
+                error:
+                    error instanceof Error
+                        ? error.message
+                        : "Failed to load credentials.",
+            });
+        }
+    },
+
+    setAssets: (assets) =>
+        set({
+            assets,
+        }),
 
     openModal: (asset) =>
         set({
@@ -71,37 +107,6 @@ export const useVaultStore = create<VaultStore>((set) => ({
             selectedAsset: null,
             isDrawerOpen: false,
         }),
-
-    createAsset: (asset) =>
-        set((state) => ({
-            assets: [asset, ...state.assets],
-            isModalOpen: false,
-        })),
-
-    updateAsset: (id, asset) =>
-        set((state) => ({
-            assets: state.assets.map((item) =>
-                item.id === id
-                    ? {
-                        ...asset,
-                        id,
-                    }
-                    : item,
-            ),
-            editingAsset: null,
-            isModalOpen: false,
-        })),
-
-    deleteAsset: (id) =>
-        set((state) => ({
-            assets: state.assets.filter(
-                (asset) => asset.id !== id
-            ),
-            selectedAsset:
-                state.selectedAsset?.id === id
-                    ? null
-                    : state.selectedAsset,
-        })),
 
     setSearchQuery: (query) =>
         set({

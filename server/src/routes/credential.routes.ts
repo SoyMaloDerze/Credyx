@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
     getCredentialController,
+    getCredentialsController,
     issueCredential,
     revokeCredentialController,
     verifyCredentialController,
@@ -9,6 +10,8 @@ import {
 const router = Router();
 
 router.post("/issue", issueCredential);
+
+router.get("/", getCredentialsController);
 
 router.get("/verify/:hash", verifyCredentialController);
 

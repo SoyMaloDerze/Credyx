@@ -33,6 +33,15 @@ export async function createCredential(data: CreateCredentialInput) {
     });
 }
 
+
+export async function getCredentials() {
+    return prisma.credential.findMany({
+        orderBy: {
+            createdAt: "desc",
+        },
+    });
+}
+
 export async function findCredentialByHash(credentialHash: string) {
     return prisma.credential.findUnique({
         where: {

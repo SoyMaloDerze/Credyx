@@ -6,11 +6,11 @@ import { EASING } from "../../constants/easing";
 
 
 interface HeroProps {
-    onCreateAsset: () => void;
+    onIssueCredential: () => void;
 }
 
 export default function Hero({
-    onCreateAsset, 
+    onIssueCredential,
 }: HeroProps) {
     return (
         <>
@@ -38,7 +38,7 @@ export default function Hero({
                         >
                             <RiShieldKeyholeLine />
 
-                            Your vault is ready.
+                            Credential Vault Ready
                         </motion.div>
 
                         {/* Hero Title */}
@@ -53,7 +53,7 @@ export default function Hero({
                             }}
                             className="text-5xl font-black leading-tight tracking-tight text-white lg:text-6xl"
                         >
-                            Your professional identity
+                            Professional credentials
 
                             <span className="mt-2 block text-violet-400">
                                 secured by Monad.
@@ -72,9 +72,10 @@ export default function Hero({
                             }}
                             className="mt-7 max-w-2xl text-lg leading-8 text-zinc-400"
                         >
-                            Store your professional identity once, securely
-                            organize every credential and instantly autofill
-                            applications anywhere with confidence.
+                            Issue tamper-proof credentials, 
+                            verify them instantly, 
+                            and keep every professional achievement permanently 
+                            secured on the Monad blockchain.
                         </motion.p>
 
                         {/* Actions */}
@@ -89,14 +90,14 @@ export default function Hero({
                             }}
                             className="mt-10 flex flex-wrap gap-4"
                         >
-                            <button onClick={onCreateAsset} className="group inline-flex items-center gap-3 rounded-2xl border border-violet-500/30 bg-violet-600 px-6 py-4 font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,.35)] transition-all duration-300 hover:scale-[1.02] hover:border-violet-400 hover:shadow-[0_0_50px_rgba(139,92,246,.5)]">
+                            <button onClick={onIssueCredential} className="group inline-flex items-center gap-3 rounded-2xl border border-violet-500/30 bg-violet-600 px-6 py-4 font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,.35)] transition-all duration-300 hover:scale-[1.02] hover:border-violet-400 hover:shadow-[0_0_50px_rgba(139,92,246,.5)]">
                                 <RiAddLine className="text-xl transition-all duration-300 group-hover:rotate-90" />
 
-                                Add Vault Asset
+                                Issue Credential
                             </button>
 
                             <button className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/3 px-6 py-4 font-medium text-zinc-300 transition-all duration-300 hover:border-violet-500/30 hover:bg-violet-500/8 hover:text-white">
-                                Explore Vault
+                                View Credentials
 
                                 <RiArrowRightLine className="transition-transform duration-300 group-hover:translate-x-1" />
                             </button>

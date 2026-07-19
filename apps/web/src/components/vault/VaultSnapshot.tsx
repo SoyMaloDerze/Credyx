@@ -6,42 +6,59 @@ import {
     RiSparklingLine,
 } from "react-icons/ri";
 
+import { useVaultStore } from "../../store/useVaultStore";
+
 import { fade, MOTION } from "../../constants/motion";
 import { EASING } from "../../constants/easing";
 
-const metrics = [
-    {
-        label: "Vault Assets",
-        value: 12,
-        icon: RiFolderShield2Line,
-    },
-    {
-        label: "Identity Records",
-        value: 8,
-        icon: RiFileList3Line,
-    },
-    {
-        label: "Verified Profiles",
-        value: 4,
-        icon: RiGraduationCapLine,
-    },
-    {
-        label: "Ready to Inject",
-        value: "97%",
-        icon: RiSparklingLine,
-    },
-] as const;
-
-const collections = [
-    "Professional",
-    "Identity",
-    "Projects",
-    "Education",
-    "Developer",
-    "Wallet",
-] as const;
 
 export default function VaultSnapshot() {
+    const { assets } = useVaultStore();
+
+    const collections = [
+        ...new Set(
+            assets.map(
+                (credential) =>
+                    credential.credentialType,
+            ),
+        ),
+    ];
+
+    const metrics = [
+        {
+            label: "Credentials",
+            value: assets.length,
+            icon: RiFolderShield2Line,
+        },
+        {
+            label: "Organizations",
+            value: new Set(
+                assets.map(
+                    (credential) =>
+                        credential.issuingOrganization,
+                ),
+            ).size,
+            icon: RiFileList3Line,
+        },
+        {
+            label: "Active",
+            value: assets.filter(
+                (credential) =>
+                    credential.status === "ACTIVE",
+            ).length,
+            icon: RiGraduationCapLine,
+        },
+        {
+            label: "Revoked",
+            value: assets.filter(
+                (credential) =>
+                    credential.status === "REVOKED",
+            ).length,
+            icon: RiSparklingLine,
+        },
+    ];
+
+
     return (
         <>
             <motion.section
@@ -75,9 +92,9 @@ export default function VaultSnapshot() {
                             </h2>
 
                             <p className="mt-4 max-w-2xl text-zinc-400">
-                                Powered by Monad. Your professional identity,
-                                documents and credentials are organized,
-                                protected and always ready for autofill.
+                                Powered by Monad. Every credential issued through Credyx is 
+                                cryptographically verifiable, permanently anchored on-chain, and 
+                                instantly available from your professional identity vault.
                             </p>
                         </div>
 
@@ -87,7 +104,7 @@ export default function VaultSnapshot() {
                             </span>
 
                             <span className="mt-1 font-semibold text-white">
-                                Monad ⚡
+                                Monad Testnet⚡
                             </span>
                         </div>
                     </div>

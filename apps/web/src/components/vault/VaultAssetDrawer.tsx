@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
     RiCloseLine,
-    RiDeleteBinLine,
+    // RiDeleteBinLine,
     RiEdit2Line,
     RiExternalLinkLine,
     RiFileCopyLine,
@@ -28,7 +28,6 @@ export default function VaultAssetDrawer({
     onClose,
 }: VaultAssetDrawerProps) {
     const {
-        deleteAsset,
         openModal,
     } = useVaultStore();
 
@@ -52,17 +51,17 @@ export default function VaultAssetDrawer({
     }
 
     // delete asset handler
-    const handleDelete = () => {
-        if (!asset) {
-            return;
-        }
+    // const handleDelete = () => {
+    //     if (!asset) {
+    //         return;
+    //     }
 
-        deleteAsset(asset.id);
+    //     deleteAsset(asset.id);
 
-        onClose();
-    };
+    //     onClose();
+    // };
 
-    const Icon = asset.icon;
+    
 
     return (
         <>
@@ -104,22 +103,22 @@ export default function VaultAssetDrawer({
                                     <div className="flex items-start justify-between">
                                         <div className="flex items-start gap-5">
                                             <div className="flex h-16 w-16 items-center justify-center rounded-3xl border border-violet-500/20 bg-violet-500/10 text-violet-300">
-                                                <Icon className="text-3xl" />
+                                                <RiShieldCheckLine className="text-3xl" />
                                             </div>
 
                                             <div>
                                                 <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-2 text-sm font-medium text-violet-300">
                                                     <RiShieldCheckLine />
 
-                                                    Verified Asset
+                                                    {asset.status}
                                                 </div>
 
                                                 <h2 className="mt-5 text-3xl font-black tracking-tight text-white">
-                                                    {asset.title}
+                                                    {asset.credentialTitle}
                                                 </h2>
 
                                                 <p className="mt-3 leading-7 text-zinc-400">
-                                                    {asset.description}
+                                                    {asset.description ?? "No description provided."}
                                                 </p>
                                             </div>
                                         </div>
@@ -145,11 +144,11 @@ export default function VaultAssetDrawer({
 
                                     <div className="rounded-3xl border border-white/8 bg-white/2 p-6">
                                         <p className="text-xs uppercase tracking-[0.24em] text-zinc-500">
-                                            Collection
+                                            Credential Type
                                         </p>
 
                                         <p className="mt-3 text-lg font-semibold text-white">
-                                            {asset.type}
+                                            {asset.credentialType}
                                         </p>
                                     </div>
 
@@ -157,11 +156,13 @@ export default function VaultAssetDrawer({
                                         <div className="flex items-center gap-3 text-zinc-300">
                                             <RiTimeLine className="text-xl text-violet-300" />
 
-                                            Last Updated
+                                            Issued On Chain
                                         </div>
 
                                         <p className="mt-3 text-lg font-medium text-white">
-                                            {asset.lastSynced}
+                                            new Date(
+                                                asset.issuedOnChainAt,
+                                            ).toLocaleString()
                                         </p>
                                     </div>
 
@@ -173,7 +174,7 @@ export default function VaultAssetDrawer({
                                         </div>
 
                                         <p className="mt-3 break-all font-mono text-sm text-zinc-400">
-                                            0x74f3...92ae
+                                            `${asset.ownerWallet.slice(0, 8)}...${asset.ownerWallet.slice(-6)}`
                                         </p>
                                     </div>
 
@@ -191,11 +192,16 @@ export default function VaultAssetDrawer({
                                             whileTap={{
                                                 scale: 0.98,
                                             }}
+                                            onClick={() =>
+                                                navigator.clipboard.writeText(
+                                                    asset.credentialHash,
+                                                )
+                                            }
                                             className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/3 px-5 py-4 font-medium text-zinc-300 transition-colors duration-300 hover:border-violet-500/30 hover:text-white"
                                         >
                                             <RiFileCopyLine />
 
-                                            Copy
+                                            Copy Hash
                                         </motion.button>
 
                                         <motion.button
@@ -209,7 +215,7 @@ export default function VaultAssetDrawer({
                                         >
                                             <RiExternalLinkLine />
 
-                                            Autofill
+                                            View Transaction
                                         </motion.button>
 
                                         <motion.button
@@ -220,6 +226,7 @@ export default function VaultAssetDrawer({
 
                                                 openModal(asset);
                                             }}
+                                            
                                             whileHover={{
                                                 y: -2,
                                             }}
@@ -233,7 +240,7 @@ export default function VaultAssetDrawer({
                                             Edit
                                         </motion.button>
 
-                                        <motion.button
+                                        {/* <motion.button
                                             onClick={handleDelete}
                                             whileHover={{
                                                 y: -2,
@@ -246,7 +253,7 @@ export default function VaultAssetDrawer({
                                             <RiDeleteBinLine />
 
                                             Delete
-                                        </motion.button>
+                                        </motion.button> */}
 
                                     </div>
 
