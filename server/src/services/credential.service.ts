@@ -11,6 +11,7 @@ export async function registerCredential(
     return {
         transactionHash: receipt.hash,
         blockNumber: receipt.blockNumber,
+        explorerUrl: `https://testnet.monadvision.com/tx/${receipt.hash}`,
     };
 }
 
