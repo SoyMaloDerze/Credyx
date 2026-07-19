@@ -65,7 +65,7 @@ export default function CTA() {
                     <div className="mt-14 flex flex-wrap justify-center gap-5">
 
                         <Link
-                            to={ROUTES.LOGIN}
+                            to={ROUTES.APP}
                             className="inline-flex items-center gap-3 rounded-full bg-violet-600 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-violet-500"
                         >
                             Launch Vault
