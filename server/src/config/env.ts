@@ -30,6 +30,22 @@ const envSchema = z.object({
         .string()
         .url("FRONTEND_URL must be a valid URL"),
     
+    RPC_URL: z
+        .string()
+        .url("RPC_URL must be a valid URL"),
+
+    PRIVATE_KEY: z
+        .string()
+        .min(1, "PRIVATE_KEY is required"),
+
+    CONTRACT_ADDRESS: z
+        .string()
+        .regex(
+            /^0x[a-fA-F0-9]{40}$/,
+            "CONTRACT_ADDRESS must be a valid Ethereum address",
+        ),
+
+
     // test 
     GOOGLE_CLIENT_ID: z.string().optional(),
     GOOGLE_CLIENT_SECRET: z.string().optional(),

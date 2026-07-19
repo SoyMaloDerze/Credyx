@@ -19,6 +19,8 @@ import profileRoutes from "./routes/profile.routes";
 import vaultRoutes from "./routes/vault.routes";
 import vaultAssetRoutes from "./routes/vaultAsset.routes";
 import walletRoutes from "./routes/wallet.routes";
+import credentialRoutes from "./routes/credential.routes";
+
 
 const app = express();
 
@@ -74,6 +76,7 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/vault", vaultRoutes);
 app.use("/api/vault/assets", vaultAssetRoutes);
 app.use("/api/wallet", walletRoutes);
+app.use("/api/credentials", credentialRoutes);
 
 /* -------------------------------------------------------------------------- */
 /*                                Error Handler                               */

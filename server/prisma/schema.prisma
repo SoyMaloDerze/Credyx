@@ -34,6 +34,23 @@ enum AssetCollection {
   IDENTITY
 }
 
+enum CredentialStatus {
+  ACTIVE
+  REVOKED
+}
+
+enum CredentialType {
+  DEGREE
+  CERTIFICATION
+  DIPLOMA
+  LICENSE
+  ACHIEVEMENT
+  TRAINING
+  EMPLOYMENT
+  MEMBERSHIP
+  OTHER
+}
+
 model User {
   id           String   @id @default(cuid())
 
@@ -56,6 +73,8 @@ model User {
   vault        Vault?
 
   wallet       Wallet?
+
+  credentials  Credential[]
 }
 
 model Profile {
@@ -164,4 +183,41 @@ model Wallet {
   createdAt      DateTime @default(now())
 
   updatedAt      DateTime @updatedAt
+}
+
+
+model Credential {
+  id                   String   @id @default(cuid())
+
+  issuerId             String
+  issuer               User     @relation(fields: [issuerId], references: [id], onDelete: Cascade)
+
+  recipientName        String
+  recipientEmail       String?
+
+  issuingOrganization  String
+
+  credentialTitle      String
+
+  credentialType       CredentialType
+
+  description          String?
+
+  credentialIssuedAt   DateTime
+
+  ownerWallet          String
+
+  metadataUrl          String?
+
+  credentialHash       String   @unique
+  transactionHash      String   @unique
+  contractAddress      String
+
+  status               CredentialStatus @default(ACTIVE)
+
+  issuedOnChainAt      DateTime
+  revokedAt            DateTime?
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 }
