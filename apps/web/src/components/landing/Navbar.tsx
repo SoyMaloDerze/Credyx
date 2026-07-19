@@ -53,14 +53,14 @@ export default function Navbar() {
                 <div className="hidden items-center gap-4 lg:flex">
 
                     <Link
-                        to={ROUTES.LOGIN}
+                        to={ROUTES.APP}
                         className="rounded-full px-5 py-3 text-sm font-medium text-zinc-300 transition-colors duration-300 hover:text-white"
                     >
-                        Sign In
+                        DEMO
                     </Link>
 
                     <Link
-                        to={ROUTES.LOGIN}
+                        to={ROUTES.APP}
                         className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-violet-500"
                     >
                         Launch Vault
